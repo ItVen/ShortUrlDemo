@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    .container.contentTop
+        .row
+            h1  短网址服务
+        .row
+            form.form-horizontal(method="post",action="/")
+                .form-group
+                    label.col-sm-2.control-label(from="long") 长链
+                    .col-sm-10
+                        input#inputTitle.form-control(type="url",name="url")
+                .form-group
+                    label.col-sm-2.control-label(from="elf") 自定义短链
+                    .col-sm-10
+                        input#inputTitle.form-control(type="key",name="key")
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-default(type="submit") 生成短链
+
+        -if(id){
+            .row
+                | 您的短链是：
+                a(href=base_url+'/'+id,target='_blank') #{base_url}/#{id}
+        -}
+
+        .row
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th 短链
+                        th 长链
+                        th 访问统计
+                tbody
+                    each item in urls
+                        tr(class="item-id-#{item.id}")
+                            td: a(href=base_url+'/'+item.hashId,target='_blank') #{base_url}/#{item.hashId}
+                            td: a(href=item.url,target='_blank') #{item.url}
+                            td #{item.click}

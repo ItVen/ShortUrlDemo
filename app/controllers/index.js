@@ -3,7 +3,7 @@
 let shortid = require('shortid');
 const URLS=require('../models/urls');
 const Co = require('hprose').co;
-const base_url = process.env.BASE_URL || 'http://localhost:8011';
+const base_url = process.env.BASE_URL || 'http://localhost:8009';
 
 /**
  * Created by aven on 18-04-09.

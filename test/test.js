@@ -30,7 +30,7 @@ describe('server', function () {
     // Test the index route
     describe('测试首页路由', function () {
         it('打开首页', function (done) {
-            request.get({ url: 'http://localhost:3000' }, function (error, response, body) {
+            request.get({ url: 'http://localhost:8011' }, function (error, response, body) {
                 expect(body).to.include('长链');
                 expect(response.statusCode).to.equal(200);
                 expect(response.headers['content-type']).to.equal('text/html; charset=utf-8');
@@ -42,7 +42,7 @@ describe('server', function () {
     // Test submitting a URL
     describe('测试提交一条链接', function () {
         it('返回一条短链接', function (done) {
-            request.post('http://localhost:3000', {form: {url: 'https://gitee.com/eclipes/projects'}}, function (error, response, body) {
+            request.post('http://localhost:8011', {form: {url: 'https://gitee.com/eclipes/projects'}}, function (error, response, body) {
                 expect(body).to.include('您的短链是：');
                 expect(response.statusCode).to.equal(200);
                 expect(response.headers['content-type']).to.equal('text/html; charset=utf-8');
@@ -64,7 +64,7 @@ describe('server', function () {
             u.save(function(err,urls){
                 if(urls){
                     request.get({
-                        url: 'http://localhost:3000/testurl',
+                        url: 'http://localhost:8011/testurl',
                         followRedirect: false
                     }, function (error, response, body) {
                         expect(response.headers.location).to.equal('https://gitee.com/eclipes/projects');
@@ -79,7 +79,7 @@ describe('server', function () {
     describe('测试一个不存在的链接', function () {
         it('应返回404错误', function (done) {
             request.get({
-                url: 'http://localhost:3000/nonexistenturl',
+                url: 'http://localhost:8011/nonexistenturl',
                 followRedirect: false
             }, function (error, response, body) {
                 expect(response.statusCode).to.equal(404);
@@ -92,7 +92,7 @@ describe('server', function () {
     //测试API接口
     describe('测试查看所有短链的接口', function () {
         it('返回所有数据', function (done) {
-            request.post('http://localhost:3000/api/all',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
+            request.post('http://localhost:8011/api/all',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
                 expect(response.statusCode).to.equal(200);
                 expect(body).to.include('"status":1,');
                 done();
@@ -102,7 +102,7 @@ describe('server', function () {
 
     describe('测试查看一条短链的接口', function () {
         it('返回一条短链接', function (done) {
-            request.post('http://localhost:3000/api/find',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
+            request.post('http://localhost:8011/api/find',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
                 expect(response.statusCode).to.equal(200);
                 expect(body).to.include('"status":1,');
                 done();
@@ -112,7 +112,7 @@ describe('server', function () {
 
     describe('测试生成短链的接口', function () {
         it('返回一条短链接', function (done) {
-            request.post('http://localhost:3000/api/short',{form: {url: 'https://gitee.com/eclipes/projects'}},function (error, response, body) {
+            request.post('http://localhost:8011/api/short',{form: {url: 'https://gitee.com/eclipes/projects'}},function (error, response, body) {
                 expect(response.statusCode).to.equal(200);
                 expect(body).to.include('"status":1,');
                 done();

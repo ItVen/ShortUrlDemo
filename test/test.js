@@ -88,4 +88,36 @@ describe('server', function () {
             });
         });
     });
+
+    //测试API接口
+    describe('测试查看所有短链的接口', function () {
+        it('返回所有数据', function (done) {
+            request.post('http://localhost:3000/api/all',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
+                expect(response.statusCode).to.equal(200);
+                expect(body).to.include('"status":1,');
+                done();
+            });
+        });
+    });
+
+    describe('测试查看一条短链的接口', function () {
+        it('返回一条短链接', function (done) {
+            request.post('http://localhost:3000/api/find',{form: {url: 'http://as.dds.hs/sdhjas'}},function (error, response, body) {
+                expect(response.statusCode).to.equal(200);
+                expect(body).to.include('"status":1,');
+                done();
+            });
+        });
+    });
+
+    describe('测试生成短链的接口', function () {
+        it('返回一条短链接', function (done) {
+            request.post('http://localhost:3000/api/short',{form: {url: 'https://gitee.com/eclipes/projects'}},function (error, response, body) {
+                expect(response.statusCode).to.equal(200);
+                expect(body).to.include('"status":1,');
+                done();
+            });
+        });
+    });
+
 });

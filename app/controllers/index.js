@@ -65,6 +65,7 @@ module.exports = {
         Co(function* () {
             let id = req.params.id.trim();
             let u = yield URLS.findById(id);
+
             if(u){
                 u.click = u.click+1;
                 console.log(u);

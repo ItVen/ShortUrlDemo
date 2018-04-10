@@ -10,7 +10,7 @@ bodyParser = require('body-parser');
 fs=require('fs');
 
 //加载模块
-let models_path=__dirname+'/app/models';
+let models_path=__dirname+'/api/models';
 let walk=function(path){
     fs
         .readdirSync(path)

@@ -1,5 +1,5 @@
-let Index=require('../app/controllers/index');
-let Api=require('../app/controllers/api');
+let Index=require('../api/controllers/index');
+let Api=require('../api/controllers/api');
 /**
  * Created by aven on 18-04-09.
  */
@@ -7,7 +7,9 @@ module.exports=function(app){
     /***********demo展示*************/
     app.get('/',Index.home);
     app.post ('/',Index.show);
-    app.route('/:id').all(Index.jump)
+    app.get('/api',Index.apiShow);
+    app.route('/:id').all(Index.jump);
+
 
     /*******API*******/
     app.post('/api/short',Api.short);

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+        .row
+            .page-header.clearfix
+                h1 api列表
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th 接口
+                        th 请求方式
+                        th 说明
+                tbody
+                    each item in data
+                        tr
+                            td #{item.api}
+                            td #{item.m}
+                            td #{item.s}

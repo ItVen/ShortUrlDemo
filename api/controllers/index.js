@@ -17,6 +17,15 @@ module.exports = {
             console.log(err);
         });
     },
+    apiShow:function (req,res) {
+        let data = [
+            {api:"/api/short",m:"post",s:"生成 短链 传递参数 url（必填）key(选填) "},
+            {api:"/api/all",m:"post",s:"查看所有"},
+            {api:"/api/find",m:"post",s:"查看 单条 传递参数 url,key （必填其中之一） key优先级高与URL"}
+        ];
+        console.log(data);
+        return res.render('api', { title: '短网址服务' ,data: data});
+    },
     show:function(req,res){
         Co(function* () {
             //得到长链接
@@ -86,4 +95,5 @@ module.exports = {
             return res.render('error',{error:error});
         });
     }
+
 };
